@@ -1,0 +1,7 @@
+flag_1 = b"Secruinets{u_M4D3_I7_insid4_7he_7ower_u_4r3_4_CHO53N_onE}"
+flag_2 = b"Securinets{F4CiNG_Ev4nkhell'S_Hell_Is_N07_ThAT_e4sy}"
+flag_3 = b"Securinets{u_9o7_ur_SE1f_THe_7horN_7HAt_caN_K1l1_a_GoD}"
+flag_4 = b"Securinets{hI9H_w4y_t0_7HE_fl0or_oF_DE47h_ain7_that_Easy}"
+flag_5 = b"Secruinets{u_survIvED_HEl1_wHa7_A_true_BeA57}"
+flag_6 = b"Secruinets{u_D0dg3D_the_wrA7H_oF_zah4rD_5OM3how}"
+flag_7 = b"Secruinets{d0DgiN_zAh4rD_w17h_the_hE1p_oF_H45TAd}"
