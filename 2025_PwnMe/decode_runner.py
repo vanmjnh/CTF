@@ -1,4 +1,4 @@
-from pwn import remote
+from pwn import *
 
 encoded_list = {
     "1337 ...\n": "Leet Speak 1337",
@@ -299,7 +299,8 @@ def decode_nato_cipher(encoded_text):
     return "".join(word[0] for word in encoded_text.split())
 
 def decode_runner():
-    r = remote("decoderunner-6cb23dc19c88b77c.deploy.phreaks.fr", 443, ssl=True)
+    # r = remote("decoderunner-6cb23dc19c88b77c.deploy.phreaks.fr", 443, ssl=True)
+    r = process("python", "build/src/DECODE_RUNNER.py")
     r.recvuntil(b'Good luck!\n\n\n\n')
 
     for i in range(100):
@@ -308,52 +309,52 @@ def decode_runner():
         print(f"[{i}] {hint: }\n{ct: }")
 
         if encoded_list[hint] == "Leet Speak 1337":
-            pt = decode_leet(ct)
+            pt = decode_leet(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
         elif encoded_list[hint] == "Baudot Code":
-            pt = decode_baudot(ct)
+            pt = decode_baudot(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
         elif encoded_list[hint] == "Morbit Cipher":
-            pt = decode_morbit(ct)
+            pt = decode_morbit(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
         elif encoded_list[hint] == "Wabun Code":
-            pt = decode_wabun(ct)
+            pt = decode_wabun(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
         elif encoded_list[hint] == "Chuck Norris Unary Code":
-            pt = decode_chuck_norris_unary(ct)
+            pt = decode_chuck_norris_unary(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
         elif encoded_list[hint] == "Guitar Chords Notation":
-            pt = decode_guitar_chords_notation(ct)
+            pt = decode_guitar_chords_notation(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
         elif encoded_list[hint] == "Latin Gibberish":
-            pt = decode_latin_gibberish(ct)
+            pt = decode_latin_gibberish(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
         elif encoded_list[hint] == "Trithemius Cipher":
-            pt = decode_trithemius_cipher(ct)
+            pt = decode_trithemius_cipher(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
         elif encoded_list[hint] == "Shankar Speech Defect (Q&A)":
-            pt = decode_shankar_speech_defect(ct)
+            pt = decode_shankar_speech_defect(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
         elif encoded_list[hint] == "NATO Phonetic Alphabet":
-            pt = decode_nato_cipher(ct)
+            pt = decode_nato_cipher(ct).lower()
             print(f"{pt: }")
             r.sendline(pt.encode())
 
@@ -363,3 +364,5 @@ def decode_runner():
     print(r.recvall())
 
     r.close()
+
+decode_runner()
