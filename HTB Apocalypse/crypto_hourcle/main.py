@@ -15,13 +15,13 @@ length = 20 # length target
 size = length + (16 - (length % 16)) % 16
 assert size > 16
 iv_ctrlBlock = '_'*size
-feedback_targetBlock = '_'*size
+iv_targetBlock = '_'*size
 
 target = ''
 i = 1
 while i <= length:
     for char in chars:
-        payload = iv_ctrlBlock[-(size-1):] + char + feedback_targetBlock[-(size-i):]
+        payload = iv_ctrlBlock[-(size-1):] + char + iv_targetBlock[-(size-i):]
         print(iv_ctrlBlock[-(size-1):] + char + iv_ctrlBlock[-(size-1):] + '?')
         send_user(payload.encode())
         recv = r.recvline().decode()
